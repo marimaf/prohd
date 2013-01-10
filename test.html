@@ -51,10 +51,10 @@
 	}	
 	
     #imgholder{
-			width: 411px;
-			height: 231px;
+			width: 640px;
+			height: 360px;
 			position: absolute;
-			background-image: url("mueble360.jpg");
+			background-image: url("mueble360vertical.jpg");
 	}
  
 	#control{
@@ -63,14 +63,14 @@
 			z-index: 1001;
 			background: #000;
 			opacity: 0;
-			width: 411px;
-			height: 231px;
+			width: 640px;
+			height: 360px;
 			color: #fff;
 	}
 		
 	#demoWrapper{
 			margin: 50px auto 0px auto;
-			width: 411px;
+			width: 640px;
 			height: 520px;
 			position: relative;
 			margin-bottom: 50px;
@@ -195,7 +195,7 @@
  		if(i == imageAmount){
  			i=0;
  		}
- 		imgholder.setStyle("background-position", (-i*411)+"px " +"0px");
+ 		imgholder.setStyle("background-position", "0px " +(-i*360)+"px" );
  	}
  	
  	 function moveBack(){
@@ -204,7 +204,7 @@
  			i = imageAmount-1;
  		}
  		 
- 		imgholder.setStyle("background-position", (-i*411)+"px " +"0px");
+ 		imgholder.setStyle("background-position", "0px " +(-i*360)+"px");
  	}
  	
  	
@@ -215,7 +215,7 @@
  			i=0;
  		}
  		
- 		imgholder.setStyle("background-position", (-i*411)+"px " +"0px");
+ 		imgholder.setStyle("background-position", "0px " +(-i*411)+"px");
  		if(autospin){
  			setTimeout("nextImage();", speeeeeed);
  		}
