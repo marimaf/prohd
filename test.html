@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<style type="text/css">
+ 	
+ 	body{
+ 		background: #fff;
+ 	}
+ 	
+ 	#head{
+ 		background: #2a2a2a; 
+ 		z-index: 1000;
+ 	}
+ 	
+ 	#wrap{
+ 	 background: #fff;
+ 	}
+ 
+	#textDemo{
+		color:#212121;
+		font-size:72px;
+		padding-bottom:50px;
+		padding-left:50px;
+		padding-right:50px;
+		padding-top:50px;
+		text-shadow:1px 1px 0 #444444;
+		width:3000px;
+	}
+	
+	#DemoItem1, #DemoItem2, #DemoItem3{
+		position: fixed;
+		top: 370px;
+		left: 50px;
+		width: 200px;
+		height: 50px;
+		background: #1f1f1f;
+		padding: 20px;
+		color: #fff;
+		border-top: 1px solid #444;
+		border-left: 1px solid #444;
+		border-right: 1px solid #111;
+		border-bottom: 1px solid #111;
+	}
+	
+	#DemoItem2{
+		top: 270px;
+	}
+	#DemoItem3{
+		top: 170px;
+	}	
+	
+    #imgholder{
+			width: 411px;
+			height: 231px;
+			position: absolute;
+			background-image: url("mueble360.jpg");
+	}
+ 
+	#control{
+			cursor: move;
+			position: absolute;
+			z-index: 1001;
+			background: #000;
+			opacity: 0;
+			width: 411px;
+			height: 231px;
+			color: #fff;
+	}
+		
+	#demoWrapper{
+			margin: 50px auto 0px auto;
+			width: 411px;
+			height: 520px;
+			position: relative;
+			margin-bottom: 50px;
+	}
+		
+	#controls{
+			position: absolute;
+			bottom: 0px;
+			border-left: 1px solid #2a2a2a;
+			height: 120px;
+			
+	}
+  
+  	.col{
+  		padding-left: 25px;
+  		height: 120px;
+  		border-right: 1px solid #2a2a2a;
+  		width: 208px;
+  		float: left;
+  	}
+  	
+  	#notice{
+  	 	position: absolute;
+		color:#2A2A2A;
+		font-family:'Lucida Grande','Lucida Console',Monaco,monospace;
+		font-size:10px;
+		font-weight:normal;
+		text-transform:uppercase;  
+		z-index: 10000;
+		opacity: 0;
+  	}
+  	
+  	.col span{
+  		display: block;
+  		margin-bottom: 10px;
+		color:#2A2A2A;
+		font-family:'Lucida Grande','Lucida Console',Monaco,monospace;
+		font-size:12px;
+		font-weight:normal;
+		text-transform:uppercase;  	
+  	}
+  	
+  	.col p{
+  		width: 190px;
+		color:#484848;
+		font-family:Verdana,Geneva,sans-serif;
+		font-size:11px;
+		line-height:18px;
+		margin-bottom: 10px;
+  	}
+  	
+	
+</style>
+ 
+
+	<script type="text/javascript">
+	
+	
+		var i = 0;
+		var imageAmount = 72;
+		var autospin = false;
+		var tickAmount = 10;
+		var imgholder = 0;
+		var speeeeeed = 25;
+		var mdown = false;
+		
+		function loadDemo(){
+			
+			/*$("autoplaybutton").checked = false;
+			$("speed").value = "5";
+			$("ticks").value  = "10";
+			$("notice").setStyle("opacity", "0");
+			setTimeout("$('notice').fade([0,1]);", 1000);
+			setTimeout("$('notice').fade(0);", 5000);
+			setTimeout("$('notice').innerHTML = 'Click and drag the image to rotate it';", 5900);
+			setTimeout("$('notice').fade(1);", 6500);
+			*/
+	  		imgholder = $("imgholder");
+			
+			
+			$("control").addEvents({
+            			'mousedown': function(e){
+            				 e.preventDefault(); // firefox/ie crazyness
+            				 autospin = false;
+            				 mdown = true;
+							 posXori = e.page.x;
+							 
+						},
+						'mouseup': function(e){
+								if(mdown){
+							 		mdown = false;
+								}
+							},
+						'mouseleave': function(e){
+							 
+							 	mdown = false;
+							    
+					 
+							},
+						'mousemove': function(e){
+							if(mdown){
+							 	var moveto = parseInt((e.page.x - posXori)/tickAmount);
+							 	if(moveto >= 1){
+							 		posXori = e.page.x;
+							 		
+							 		moveBack();
+							 	}
+							 	if(moveto <= -1){
+							 	 	posXori = e.page.x;
+							 		moveForward();
+							 	}
+						 
+							}
+							 
+						}
+					});
+ 
+		}
+ 
+ 	function moveForward(){
+ 		i++;
+ 		if(i == imageAmount){
+ 			i=0;
+ 		}
+ 		imgholder.setStyle("background-position", (-i*411)+"px " +"0px");
+ 	}
+ 	
+ 	 function moveBack(){
+ 		i--;
+ 		if(i == -1){
+ 			i = imageAmount-1;
+ 		}
+ 		 
+ 		imgholder.setStyle("background-position", (-i*411)+"px " +"0px");
+ 	}
+ 	
+ 	
+ 	function nextImage(){
+ 	 
+ 		i++;
+ 		if(i == imageAmount){
+ 			i=0;
+ 		}
+ 		
+ 		imgholder.setStyle("background-position", (-i*411)+"px " +"0px");
+ 		if(autospin){
+ 			setTimeout("nextImage();", speeeeeed);
+ 		}
+ 	}
+  
+ 	function toggelPlay(){
+ 		if(!autospin){
+ 			autospin = true;
+ 			nextImage();
+ 			 
+ 		}
+ 		else{
+ 			autospin = false;
+ 		}
+ 	}
+ 	
+ 	function setSpeed(val){
+ 		if(val <= 0 || val >= 11){
+ 			alert("your val is pish man!");
+ 		}
+ 		else{
+ 			speeeeeed = 51 - (val*5);
+ 		}
+ 	}
+ 	
+ 	
+ 	function setTick(val){
+ 		if(val <= 0 || val >= 101){
+ 			alert("your val is pish man!");
+ 		}
+ 		else{
+ 			tickAmount = val;
+ 		}
+ 	}
+ 	
+ 	
+	</script>
+	
+ 
+
+</head>
+<body onload="loadDemo()">
+	
+	<div id="wrap">
+	
+		
+		<div id="main">
+			 
+			
+			 
+			<div id="demoWrapper">
+			<div id="notice"></div> 
+			<div id="imgholder">
+			 
+				<div id="control"></div>
+			
+			</div>
+			
+		
+		</div>
+		 
+		</div>
+
+	</div>
+	
+
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js" type="text/javascript">
+	</script>	
+	
+	
+</body>
+</html>
