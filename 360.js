@@ -122,20 +122,17 @@
  	}
  	
  	
-	function chart()
+	function poltronmorado()
 	{
-		imgholder.setStyle('background-image', "url(chart.png)");
+		imgholder.setStyle('background-image', "url(poltronmorado2.jpg)");
 	}
 	function mueble360()
 	{
 		imgholder.setStyle('background-image', "url(mueble360vertical.jpg)");
 	}
-		function nexus()
+		function poltronblanco()
 	{
-		imgholder.setStyle('background-image', "url(nexus.jpg)");
+		imgholder.setStyle('background-image', "url(poltronblanco2.jpg)");
 	}
-		function nudos()
-	{
-		imgholder.setStyle('background-image', "url(nudos.jpg)");
-	}
+
 	
