@@ -71,7 +71,7 @@
 	#demoWrapper{
 			margin: 50px auto 0px auto;
 			width: 640px;
-			height: 520px;
+			height: 360px;
 			position: relative;
 			margin-bottom: 50px;
 	}
@@ -124,136 +124,60 @@
   	
 	
 </style>
- 
 
-	<script type="text/javascript">
-	
-	
-		var i = 0;
-		var imageAmount = 72;
-		var autospin = false;
-		var tickAmount = 10;
-		var imgholder = 0;
-		var speeeeeed = 25;
-		var mdown = false;
-		
-		function loadDemo(){
-			
-			/*$("autoplaybutton").checked = false;
-			$("speed").value = "5";
-			$("ticks").value  = "10";
-			$("notice").setStyle("opacity", "0");
-			setTimeout("$('notice').fade([0,1]);", 1000);
-			setTimeout("$('notice').fade(0);", 5000);
-			setTimeout("$('notice').innerHTML = 'Click and drag the image to rotate it';", 5900);
-			setTimeout("$('notice').fade(1);", 6500);
-			*/
-	  		imgholder = $("imgholder");
-			
-			
-			$("control").addEvents({
-            			'mousedown': function(e){
-            				 e.preventDefault(); // firefox/ie crazyness
-            				 autospin = false;
-            				 mdown = true;
-							 posXori = e.page.x;
-							 
-						},
-						'mouseup': function(e){
-								if(mdown){
-							 		mdown = false;
-								}
-							},
-						'mouseleave': function(e){
-							 
-							 	mdown = false;
-							    
-					 
-							},
-						'mousemove': function(e){
-							if(mdown){
-							 	var moveto = parseInt((e.page.x - posXori)/tickAmount);
-							 	if(moveto >= 1){
-							 		posXori = e.page.x;
-							 		
-							 		moveBack();
-							 	}
-							 	if(moveto <= -1){
-							 	 	posXori = e.page.x;
-							 		moveForward();
-							 	}
-						 
-							}
-							 
-						}
-					});
- 
-		}
- 
- 	function moveForward(){
- 		i++;
- 		if(i == imageAmount){
- 			i=0;
- 		}
- 		imgholder.setStyle("background-position", "0px " +(-i*360)+"px" );
- 	}
- 	
- 	 function moveBack(){
- 		i--;
- 		if(i == -1){
- 			i = imageAmount-1;
- 		}
- 		 
- 		imgholder.setStyle("background-position", "0px " +(-i*360)+"px");
- 	}
- 	
- 	
- 	function nextImage(){
- 	 
- 		i++;
- 		if(i == imageAmount){
- 			i=0;
- 		}
- 		
- 		imgholder.setStyle("background-position", "0px " +(-i*411)+"px");
- 		if(autospin){
- 			setTimeout("nextImage();", speeeeeed);
- 		}
- 	}
+<style>
+   .roundabout-holder {
+		align: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      height: 20em;
+      width: 20em;
+   }
+   .roundabout-moveable-item {
+      height: 14em;
+      width: 14em;
+      cursor: pointer;
+      background-color: #ccc;
+      border: 1px solid #999;
+   }
+   .roundabout-in-focus {
+      cursor: auto;
+   }
   
- 	function toggelPlay(){
- 		if(!autospin){
- 			autospin = true;
- 			nextImage();
- 			 
- 		}
- 		else{
- 			autospin = false;
- 		}
- 	}
- 	
- 	function setSpeed(val){
- 		if(val <= 0 || val >= 11){
- 			alert("your val is pish man!");
- 		}
- 		else{
- 			speeeeeed = 51 - (val*5);
- 		}
- 	}
- 	
- 	
- 	function setTick(val){
- 		if(val <= 0 || val >= 101){
- 			alert("your val is pish man!");
- 		}
- 		else{
- 			tickAmount = val;
- 		}
- 	}
- 	
- 	
-	</script>
+			ul {
+				align: center
+				list-style: none;
+				padding: 0;
+				margin: 0 auto;
+				width: 84em;
+				height: 56em;
+			}
+			li {
+				height: 48em;
+				width: 48em;
+				text-align: center;
+				cursor: pointer;
+			}
+				li img {
+					width: 100%;
+				}
+				li.roundabout-in-focus {
+					cursor: default;
+				}
+			li span {
+				display: block;
+				padding-top: 6em;
+			}
+
+		
+		
+</style>
+
+ <script src="360.js" type="text/javascript"></script>	
+ 
 	
+
  
 
 </head>
@@ -270,15 +194,25 @@
 			<div id="notice"></div> 
 			<div id="imgholder">
 			 
-				<div id="control"></div>
+			 
+				<div id="control">
+				
+				
+				
+				</div>
 			
 			</div>
-			
+		</div> 
+		</div>
 		
-		</div>
-		 
-		</div>
-
+		<center>
+			<ul>
+				<li><img onclick="chart()" width="150px" src="chart.png"></img></li>
+				<li><img onclick="mueble360()" width="150px" src="mueble.jpg"></img></li>
+				<li><img onclick="nexus()"width="150px" src="nexus.jpg"></img></li>
+				<li><img onclick="nudos()" width="150px" src="nudos.jpg"></img></li>
+			</ul>
+		</center>
 	</div>
 	
 
@@ -287,6 +221,26 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js" type="text/javascript">
 	</script>	
 	
+
+	
+	<script src="jquery.js"></script>
+	<script src="jquery.event.drag.live-2.2.js"></script>
+	<script src="jquery.event.drag-2.2.js"></script>
+	<script src="jquery.event.drop.live-2.2.js"></script>
+	<script src="jquery.event.drop-2.2.js"></script>
+<script src="jquery.roundabout.js"></script>
+<script>
+ $jQ = jQuery.noConflict();
+   $jQ(document).ready(function() {
+      $jQ('ul').roundabout({
+	  enableDrag: true,
+	  minOpacity: 0.0,
+	  maxOpacity: 100.0,
+	  maxZ: 180.0
+	  });
+	  
+   });
+</script>
 	
 </body>
 </html>
