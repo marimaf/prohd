@@ -7,7 +7,7 @@
 		var speeeeeed = 25;
 		var mdown = false;
 		
-		function loadDemo(){
+		function loadDemo(img){
 			 
 			/*$("autoplaybutton").checked = false;
 			$("speed").value = "5";
@@ -19,6 +19,10 @@
 			setTimeout("$('notice').fade(1);", 6500);
 			*/
 	  		imgholder = $("imgholder");
+			if (img == "silla")
+			{
+				imgholder.setStyle('background-image', "url(poltronmorado2.jpg)");
+				}
 			
 			
 			$("control").addEvents({
@@ -133,6 +137,14 @@
 		function poltronblanco()
 	{
 		imgholder.setStyle('background-image', "url(poltronblanco2.jpg)");
+	}
+		function beige()
+	{
+		imgholder.setStyle('background-image', "url(beige2.jpg)");
+	}
+		function berenjena()
+	{
+		imgholder.setStyle('background-image', "url(berenjena2.jpg)");
 	}
 
 	
