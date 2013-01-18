@@ -140,11 +140,11 @@
 	}
 		function beige()
 	{
-		imgholder.setStyle('background-image', "url(beige2.jpg)");
+		imgholder.setStyle('background-image', "url(beigeStrip.jpg)");
 	}
 		function berenjena()
 	{
-		imgholder.setStyle('background-image', "url(berenjena2.jpg)");
+		imgholder.setStyle('background-image', "url(berenjenaStrip.jpg)");
 	}
 
 	
